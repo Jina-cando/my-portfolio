@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jina Chun Portfolio | Global Ops Coordinator</title>
+
+<link rel="stylesheet" href="https://cdn. prestigious.gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+:root {
+  --orange: #ff7710; 
+  --navy: #0f172a; 
+  --ink: #1d1d1f;
+  --muted: #86868b;
+  --bg: #f8fafc;
+  --line: #e2e8f0;
+  --white: #ffffff;
+  --soft: #fff4e1;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+body { margin: 0; font-family: 'Pretendard', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.7; letter-spacing: -0.02em; }
+
+/* Layout */
+.page { max-width: 1100px; margin: auto; padding: 40px 20px; }
+.sheet { background: var(--white); border-radius: 32px; overflow: hidden; box-shadow: 0 40px 100px rgba(15, 23, 42, 0.08); position: relative; }
+
+.topbar { 
+  display: flex; justify-content: space-between; padding: 20px 40px; border-bottom: 1px solid var(--line); 
+  font-size: 14px; font-weight: 700; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px);
+  position: sticky; top: 0; z-index: 100;
+}
+
+/* Hero - 브라우저 창 기준 유연한 대응 */
+.hero { padding: 80px 60px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; background: linear-gradient(135deg, #fff 0%, #fff9f5 100%); }
+h1 { font-size: clamp(30px, 4vw, 48px); line-height: 1.2; margin: 0 0 24px; font-weight: 800; letter-spacing: -0.04em; word-break: keep-all; }
+h1 b { color: var(--orange); }
+.hero p { font-size: 16px; color: #475569; white-space: pre-line; margin: 0; }
+.hero-image { width: 100%; aspect-ratio: 1/1; max-height: 420px; border-radius: 24px; background: var(--navy); overflow: hidden; box-shadow: 0 20px 40px rgba(255, 119, 16, 0.1); }
+.hero-image img { width: 100%; height: 100%; object-fit: cover; }
+
+.keyword { margin-top: 32px; display: flex; gap: 8px; flex-wrap: wrap; }
+.keyword span { background: var(--white); border: 1px solid var(--line); padding: 10px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #64748b; cursor: pointer; transition: 0.3s; }
+.keyword span:hover { border-color: var(--orange); color: var(--orange); }
+.keyword span.active { background: var(--orange); color: var(--white); border-color: var(--orange); }
+
+/* Summary Strip */
+.summary-strip { padding: 40px 60px; background: var(--navy); color: var(--white); display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.summary-item { padding: 20px; border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+.summary-item b { display: block; color: var(--orange); font-size: 12px; margin-bottom: 8px; }
+.summary-item span { font-size: 13px; opacity: 0.8; line-height: 1.5; }
+
+/* Icebreaker */
+.icebreaker { padding: 80px 60px; background: var(--soft); text-align: center; }
+.game-container { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 850px; margin: 30px auto 0; }
+.quiz-item { background: #fff; padding: 24px; border-radius: 20px; border: 1px solid var(--line); cursor: pointer; text-align: left; transition: 0.3s; min-height: 140px; display: flex; flex-direction: column; justify-content: center; }
+.quiz-feedback { display: none; margin-top: 10px; font-size: 13px; color: var(--orange); font-weight: 800; }
+.quiz-item.revealed .quiz-feedback { display: block; }
+.quiz-item.revealed[data-is-lie="true"] { background: var(--navy); color: #fff; }
+
+/* Sections */
+.section { padding: 100px 60px; border-top: 1px solid var(--line); transition: 0.5s; }
+.section.dimmed { opacity: 0.2; filter: grayscale(1); }
+.section h2 { font-size: 28px; font-weight: 800; margin-bottom: 40px; color: var(--navy); }
+
+.card { display: grid; grid-template-columns: 0.4fr 1fr; gap: 40px; border-radius: 24px; padding: 30px; background: #fff; border: 1px solid var(--line); }
+.card img, .placeholder { width: 100%; height: 100%; min-height: 300px; object-fit: cover; border-radius: 16px; }
+.placeholder { background: var(--navy); color: #fff; display: grid; place-items: center; font-weight: 800; text-align: center; font-size: 14px; }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+.grid div { background: #f8fafc; padding: 14px; border-radius: 12px; font-size: 13px; border: 1px solid #f1f5f9; }
+.grid b { display: block; color: var(--orange); font-size: 10px; margin-bottom: 5px; }
+
+.insight { margin-top: 20px; padding: 15px; background: var(--soft); border-left: 4px solid var(--orange); font-size: 14px; font-weight: 700; border-radius: 0 12px 12px 0; }
+
+/* Evidence - 여백 개선 */
+.evidence { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 12px; }
+.evidence a { 
+  padding: 10px 16px; border-radius: 999px; text-decoration: none; font-size: 12px; font-weight: 800; transition: 0.3s;
+  background: var(--navy); color: #fff; display: flex; align-items: center; gap: 6px;
+}
+.evidence a:hover { background: var(--orange); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,119,16,0.2); }
+
+/* Gallery - Prev 버튼 추가 및 스타일 개선 */
+.gallery-slider { position: relative; overflow: hidden; border-radius: 24px; border: 1px solid var(--line); margin-top: 30px; }
+.gallery-track { display: flex; transition: 0.6s var(--ease); }
+.gallery-slide { min-width: 100%; aspect-ratio: 16/9; position: relative; }
+.gallery-slide img { width: 100%; height: 100%; object-fit: cover; }
+.gallery-caption { position: absolute; bottom: 20px; left: 20px; background: rgba(0,0,0,0.7); color: #fff; padding: 8px 16px; border-radius: 999px; font-size: 12px; backdrop-filter: blur(4px); }
+.gallery-btn { position: absolute; top: 50%; transform: translateY(-50%); border: none; background: rgba(255,255,255,0.9); width: 44px; height: 44px; border-radius: 50%; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; font-size: 20px; transition: 0.3s; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.gallery-btn:hover { background: var(--orange); color: #fff; }
+.gallery-btn.prev { left: 20px; }
+.gallery-btn.next { right: 20px; }
+
+@media(max-width:768px){ 
+  .hero, .card, .game-container, .summary-strip { grid-template-columns: 1fr; } 
+  .section, .hero { padding: 60px 24px; }
+  .grid { grid-template-columns: 1fr; }
+  .topbar { padding: 15px 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+<div class="sheet">
+  <div class="topbar">
+    <div><b>Jina Chun</b></div>
+    <div style="color: var(--muted);">Global Ops Coordinator · Built for LIKE LION</div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1>주도적으로 설계하고,<br><b>신뢰</b>로 함께 이루어내는<br>운영 매니저</h1>
+      <p>“좋은 교육이 세상을 바꾼다는 믿음, 검증된 행정력으로 실현하겠습니다.”
+      멋쟁이사자처럼의 ‘겁 없는 도전’과 ‘함께하는 가치’를 신뢰합니다. 대학 현장에서 AI 교육과정을 직접 설계하고 대학혁신지원사업의 성과 지표를 관리하며 복잡한 가능성을 현실적인 성과로 증명해 왔습니다. 700명 규모의 조직을 시스템화하며 다진 책임감은 Global Division의 목표를 달성할 저만의 단단한 무기입니다.</p>
+      <div class="keyword">
+        <span data-target="ep1">#글로벌경험</span>
+        <span data-target="ep2">#조직운영</span>
+        <span data-target="ep3">#프로그램운영</span>
+        <span data-target="ep4">#데이터정리</span>
+        <span data-target="ep5">#성과확산</span>
+        <span data-target="ep6">#research_mindset</span>
+        <span data-target="gallery">#moments_archive</span>
+      </div>
+    </div>
+    <div class="hero-image"><img src="image/profile.jpg" alt="Profile"></div>
+  </section>
+
+  <section class="summary-strip">
+    <div class="summary-item"><b>GLOBAL</b><span>낯선 환경에서 먼저 관계를 만드는 사람</span></div>
+    <div class="summary-item"><b>OPERATION</b><span>기록과 시나리오 기반으로 안정화하는 운영자</span></div>
+    <div class="summary-item"><b>DATA</b><span>의사결정 가능한 언어로 정리하는 실무자</span></div>
+    <div class="summary-item"><b>SPREAD</b><span>외부로 성과를 확산시키는 커뮤니케이터</span></div>
+  </section>
+
+  <section class="icebreaker">
+    <span style="background: var(--orange); color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 800;">ICE BREAKER</span>
+    <h2 style="margin: 10px 0;">3 Truths & 1 Lie</h2>
+    <div class="game-container">
+      <div class="quiz-item" data-is-lie="false">미국 고교 시절, 축구부 수비수로 뛰어본 적이 있다.<div class="quiz-feedback">TRUE! 일단 부딪히며 배우는 편입니다.</div></div>
+      <div class="quiz-item" data-is-lie="false">리더십 컨퍼런스 아젠다 매니저를 3회 맡았다.<div class="quiz-feedback">TRUE! 대규모 시스템 운영에 능숙합니다.</div></div>
+      <div class="quiz-item" data-is-lie="true">파이썬으로 유학생 데이터 10만 건을 전수조사했다.<div class="quiz-feedback">LIE! 과장하지 않는 정직함을 선호합니다.</div></div>
+      <div class="quiz-item" data-is-lie="false">행사 당일 즉석 사회자로 등판해 완주했다.<div class="quiz-feedback">TRUE! 현장 적응력과 순발력을 갖췄습니다.</div></div>
+    </div>
+  </section>
+
+  <section id="ep1" class="section">
+    <h2>EP 01. Global Experience</h2>
+    <div class="card">
+      <img src="image/global1.jpg" alt="Global">
+      <div>
+        <h3>You move first, then the world responds</h3>
+        <div class="grid">
+          <div><b>Problem</b> 낯선 미국 환경, 먼저 다가가지 않으면 안 되는 상황.</div>
+          <div><b>Approach</b> 스포츠부, 연극부 등 가리지 않고 뛰어들어 접점 형성.</div>
+          <div><b>Impact</b> 영어를 실전 문제 해결 도구로 체득한 스킬을 바탕으로 이집트, 바레인의 청년 포럼에 한국 대표로 참여.</div>
+        </div>
+        <div class="insight">관계는 기다리는 것이 아니라 움직여서 만드는 것임을 배웠습니다.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ep2" class="section">
+    <h2>EP 02. Organization</h2>
+    <div class="card">
+      <img src="image/aiesec1.jpg" alt="Org">
+      <div>
+        <h3>Systems replace effort</h3>
+        <div class="grid">
+          <div><b>Problem</b> 조직의 지속 가능성이 개인의 열정에만 의존하는 한계.</div>
+          <div><b>Approach</b> GET-DEVELOP-KEEP 중심의 인사 가이드라인 구축.</div>
+          <div><b>Impact</b> 700명 규모 멤버십의 안정적 운영 시스템 구축.</div>
+        </div>
+        <div class="insight">사람이 바뀌어도 팀이 기능하게 만드는 기록의 힘을 믿습니다.</div>
+        <div class="evidence"><a href="https://docs.google.com/spreadsheets/d/1LT3Qjgb678WUv7_WVLHuC4q2v8XY1vvz-EWc1UaMq6w/edit?usp=sharing" target="_blank">18년 TM Dashboard 예시</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ep3" class="section">
+    <h2>EP 03. Program Operation</h2>
+    <div class="card">
+      <img src="image/program1.jpg" alt="Prog">
+      <div>
+        <h3>Execution before Event</h3>
+        <div class="grid">
+          <div><b>Problem</b> 해커톤, 포럼 등 복잡한 행사의 리스크 관리.</div>
+          <div><b>Approach</b> 타임라인별 상세 시나리오와 JD 수립.</div>
+          <div><b>Impact</b> 평균 만족도 4.7/5, 참여자 지자체 표창 수여.</div>
+        </div>
+        <div class="insight">운영의 완성도는 당일의 순발력이 아닌 사전 설계에서 나옵니다.</div>
+        <div class="evidence">
+          <a href="https://www.hufs.ac.kr/hufs/11403/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaHVmcyUyRjIxODclMkYyNDIwMTElMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0RzaiUyNnNyY2hXcmQlM0QlRUMlOTklQjglRUMlQTAlODQlMjZiYnNDbFNlcSUzRCUyNmJic09wZW5XcmRTZXElM0QlMjZyZ3NCZ25kZVN0ciUzRCUyNnJnc0VuZGRlU3RyJTNEJTI2aXNWaWV3TWluZSUzRGZhbHNlJTI2cGFzc3dvcmQlM0QlMjY%3D" target="_blank">외전</a>
+          <a href="https://www.hufs.ac.kr/hufs/11406/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaHVmcyUyRjIxOTAlMkYyMzcyNDQlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0RzaiUyNnNyY2hXcmQlM0QlRUQlOTUlQjQlRUMlQkIlQTQlRUQlODYlQTQlMjZiYnNDbFNlcSUzRCUyNmJic09wZW5XcmRTZXElM0QlMjZyZ3NCZ25kZVN0ciUzRCUyNnJnc0VuZGRlU3RyJTNEJTI2aXNWaWV3TWluZSUzRGZhbHNlJTI2cGFzc3dvcmQlM0QlMjY%3D" target="_blank">해커톤</a>
+          <a href="https://www.hufs.ac.kr/hufs/11403/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaHVmcyUyRjIxODclMkYyNDY1NDAlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0RzaiUyNnNyY2hXcmQlM0QlRUMlODQlQjElRUElQjMlQkMlMjZiYnNDbFNlcSUzRCUyNmJic09wZW5XcmRTZXElM0QlMjZyZ3NCZ25kZVN0ciUzRCUyNnJnc0VuZGRlU3RyJTNEJTI2aXNWaWV3TWluZSUzRGZhbHNlJTI2cGFzc3dvcmQlM0QlMjY%3D" target="_blank">성과포럼</a>
+          <a href="https://www.hufs.ac.kr/hufs/11403/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaHVmcyUyRjIxODclMkYyMzk0NzYlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0RzaiUyNnNyY2hXcmQlM0QlRUMlOTklQjglRUIlOEMlODAlRUMlOEMlQTQlMjZiYnNDbFNlcSUzRCUyNmJic09wZW5XcmRTZXElM0QlMjZyZ3NCZ25kZVN0ciUzRCUyNnJnc0VuZGRlU3RyJTNEJTI2aXNWaWV3TWluZSUzRGZhbHNlJTI2cGFzc3dvcmQlM0QlMjY%3D" target="_blank">외대쌤</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section id="ep4" class="section">
+    <h2>EP 04. Data & B2G</h2>
+    <div class="card">
+      <img src="image/data1.jpg" alt="Data Analysis">
+      <div>
+        <h3>Data for Decision</h3>
+        <div class="grid">
+          <div><b>Problem</b> 성과를 정교한 지표로 증명해야 하는 필요성.</div>
+          <div><b>Approach</b> AI 교육과정 자율성과지표 설계 및 성과관리 체계 연계.</div>
+          <div><b>Impact</b> 대학혁신지원사업 최우수 성과 달성에 기여.</div>
+        </div>
+        <div class="insight">데이터는 납득할 수 있게 정리될 때 가치가 생깁니다.</div>
+        <div class="evidence">
+          <a href="https://www.hufs.ac.kr/hufs/11403/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaHVmcyUyRjIxODclMkYyNTQzMDYlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0QlMjZzcmNoV3JkJTNEJTI2YmJzQ2xTZXElM0QlMjZiYnNPcGVuV3JkU2VxJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNmlzVmlld01pbmUlM0RmYWxzZSUyNnBhc3N3b3JkJTNEJTI2" target="_blank">대학 AI 교육과정 지원사업 선정</a>
+          <a href="https://www.hufs.ac.kr/hufs/11403/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGaHVmcyUyRjIxODclMkYyMzMzNjglMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNnNyY2hDb2x1bW4lM0RzaiUyNnNyY2hXcmQlM0QlRUIlOEMlODAlRUQlOTUlOTklRUQlOTglODElRUMlOEIlQTAlMjZiYnNDbFNlcSUzRCUyNmJic09wZW5XcmRTZXElM0QlMjZyZ3NCZ25kZVN0ciUzRCUyNmlzVmlld01pbmUlM0RmYWxzZSUyNnBhc3N3b3JkJTNEJTI2" target="_blank">대학혁신지원사업 최고등급</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ep5" class="section">
+    <h2>EP 05. Performance Spread</h2>
+    <div class="card">
+      <img src="image/news1.jpg" alt="Performance Spread">
+      <div>
+        <h3>Language to Travel</h3>
+        <div class="grid">
+          <div><b>Problem</b> 사례들이 외부로 읽히지 않고 휘발되는 현상.</div>
+          <div><b>Approach</b> 뉴스레터 총괄 기획 및 성과의 언어 재구성.</div>
+          <div><b>Impact</b> 단발성 실적을 브랜딩 메시지로 확산.</div>
+        </div>
+        <div class="insight">성과는 전달될 때 비로소 완성됩니다.</div>
+        <div class="evidence">
+          <a href="https://iei.hufs.ac.kr/sites/iei/file/[%ED%95%9C%EA%B5%AD%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90]%EB%8C%80%ED%95%99%ED%98%81%EC%8B%A0%EC%A7%80%EC%9B%90%EC%82%AC%EC%97%85%20%EB%89%B4%EC%8A%A4%EB%A0%88%ED%84%B0%20Vol.5_v10_%EC%9B%B9%EC%9A%A9%EB%8B%A8%EB%A9%B4.pdf" target="_blank">뉴스레터 Vol.5</a>
+          <a href="https://iei.hufs.ac.kr/iei/13614/subview.do" target="_blank">뉴스레터 Vol.6</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ep6" class="section">
+    <h2>EP 06. Research Mindset</h2>
+    <div class="card">
+      <img src="image/research1.jpg" alt="Research Mindset">
+      <div>
+        <h3>Curiosity to Insight</h3>
+        <div class="grid">
+          <div><b>Problem</b> 정량 데이터로 설명하기 어려운 복합적 문제.</div>
+          <div><b>Approach</b> Python과 질적 분석을 통한 심층 탐구.</div>
+          <div><b>Impact</b> 실질적인 운영 개선 근거 도출.</div>
+        </div>
+        <div class="insight">집요함이 운영의 빈틈을 메웁니다.</div>
+        <div class="evidence">
+          <a href="https://scholar.kyobobook.co.kr/article/detail/4010071597259" target="_blank">유학생 정주 관계망 연구</a>
+          <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003192911" target="_blank">지역사회 교육공동체 연구</a>
+          <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003140119" target="_blank">유아교육 연구</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section">
+    <h2>Moments Archive</h2>
+    <div class="gallery-slider">
+      <button class="gallery-btn prev">‹</button>
+      <div class="gallery-track">
+        <div class="gallery-slide"><img src="image/gallery1.jpg" alt="1"></div>
+        <div class="gallery-slide"><img src="image/gallery2.jpg" alt="2"></div>
+        <div class="gallery-slide"><img src="image/gallery3.jpg" alt="3"></div>
+        <div class="gallery-slide"><img src="image/gallery4.jpg" alt="4"></div>
+        <div class="gallery-slide"><img src="image/gallery5.jpg" alt="5"></div>
+      </div>
+      <button class="gallery-btn next">›</button>
+    </div>
+  </section>
+
+  <footer style="padding: 80px 40px; background: var(--navy); color: #fff; text-align: center;">
+    <h2 style="color:white; margin-bottom:20px;">다양한 가능성을 하나의 지향점으로, 천지영입니다.</h2>
+    <p style="opacity: 0.6;">글로벌 인재와 국내 산업을 잇는 든든한 가교가 되겠습니다.</p>
+  </footer>
+</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('.section');
+  const keywords = document.querySelectorAll('.keyword span');
+
+  keywords.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const targetEl = document.getElementById(targetId);
+      keywords.forEach(k => k.classList.remove('active'));
+      btn.classList.add('active');
+      sections.forEach(sec => { sec.classList.add('dimmed'); });
+      targetEl.classList.remove('dimmed');
+      window.scrollTo({ top: targetEl.offsetTop - 80, behavior: 'smooth' });
+    });
+  });
+
+  const quizItems = document.querySelectorAll('.quiz-item');
+  quizItems.forEach(item => { item.addEventListener('click', () => { quizItems.forEach(el => el.classList.add('revealed')); }); });
+
+  let cur = 0;
+  const track = document.querySelector('.gallery-track');
+  const slidesCount = 5;
+
+  document.querySelector('.gallery-btn.next').addEventListener('click', () => {
+    cur = (cur + 1) % slidesCount;
+    track.style.transform = `translateX(-${cur * 100}%)`;
+  });
+
+  document.querySelector('.gallery-btn.prev').addEventListener('click', () => {
+    cur = (cur - 1 + slidesCount) % slidesCount;
+    track.style.transform = `translateX(-${cur * 100}%)`;
+  });
+});
+</script>
+</body>
+</html>
